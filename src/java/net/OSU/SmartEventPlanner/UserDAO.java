@@ -93,7 +93,7 @@ public class UserDAO {
         int result=0;
         //生成SQL代码
         StringBuilder sqlStatement = new StringBuilder();
-        sqlStatement.append("UPDATE user SET Title=?,Description=?,Time=?,Location=?,Priority=?,Contacts=? WHERE UserName=?");    
+        sqlStatement.append("INSERT event SET Title=?,Description=?,Time=?,Location=?,Priority=?,Contacts=?,UserName=?");    
         //设置数据库的字段值
         try {
             preparedStatement = connection.prepareStatement(sqlStatement.toString());
@@ -106,11 +106,9 @@ public class UserDAO {
            preparedStatement.setString(5,event.getPriority());
            preparedStatement.setString(6,event.getContacts());
            preparedStatement.setString(7,event.getUserName());
-           AddEventServlet.WriteStringToFile("D:/smarteventplannerlog.txt", preparedStatement.toString());
            //preparedStatement.setString(6,userName);
            result=preparedStatement.executeUpdate();
             //resultSet=preparedStatement.executeQuery();
-           AddEventServlet.WriteStringToFile("D:/smarteventplannerlog.txt", "row_num"+result+"username"+event.getUserName());
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
