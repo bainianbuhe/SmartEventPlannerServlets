@@ -51,7 +51,7 @@ public  class AddEventServlet extends HttpServlet {
             event.setPriority(request.getParameter("priority").trim());
             event.setContacts(request.getParameter("contacts").trim());
             event.setUserName(request.getParameter("userName").trim());
-            UserDAO.addEvent(event);
+            UserEvent.addEvent(event);
             Map<String, String> params = new HashMap<>();
             JSONObject jsonObject = new JSONObject();
             params.put("Result", "success");
