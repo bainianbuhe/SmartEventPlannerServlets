@@ -119,5 +119,74 @@ public class UserDAO {
         }
 
     }
+     public  static void updateEvent(String userName, String title, Event event)
+    {
+        //获得数据库的连接对象
+        Connection connection = DBManager.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        int result=0;
+        //生成SQL代码
+        StringBuilder sqlStatement = new StringBuilder();
+        sqlStatement.append("UPDATE event SET Title=?,Description=?,Time=?,Location=?,Priority=?,Contacts=?,UserName=? WHERE UserName=? AND Title=?");    
+        //设置数据库的字段值
+        try {
+            preparedStatement = connection.prepareStatement(sqlStatement.toString());
+           //preparedStatement.setString(1,startAddr);
+           // preparedStatement.setString(2,destAddr);
+           preparedStatement.setString(1,event.getTitle());
+           preparedStatement.setString(2,event.getDescription());
+           preparedStatement.setString(3,event.getTime());
+           preparedStatement.setString(4,event.getLocation());
+           preparedStatement.setString(5,event.getPriority());
+           preparedStatement.setString(6,event.getContacts());
+           preparedStatement.setString(7,event.getUserName());
+           preparedStatement.setString(8,userName);
+           preparedStatement.setString(9,title);
+           //preparedStatement.setString(6,userName);
+           result=preparedStatement.executeUpdate();
+            //resultSet=preparedStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+        } finally {
+           DBManager.closeAll(connection, preparedStatement,resultSet);
+         
+        }
+
+    }
+      public  static void deleteEvent(String userName, String title)
+    {
+        //获得数据库的连接对象
+        Connection connection = DBManager.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        int result=0;
+        //生成SQL代码
+        StringBuilder sqlStatement = new StringBuilder();
+        sqlStatement.append("DELETE FROM event  WHERE UserName=? AND Title=?");    
+        //设置数据库的字段值
+        try {
+            preparedStatement = connection.prepareStatement(sqlStatement.toString());
+           //preparedStatement.setString(1,startAddr);
+           // preparedStatement.setString(2,destAddr);
+           preparedStatement.setString(1,userName);
+           preparedStatement.setString(2,title);
+           //preparedStatement.setString(6,userName);
+           result=preparedStatement.executeUpdate();
+            //resultSet=preparedStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+        } finally {
+           DBManager.closeAll(connection, preparedStatement,resultSet);
+         
+        }
+
+    }
+     
 }
+
       

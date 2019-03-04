@@ -34,6 +34,14 @@
         <servlet-name>AddEventServlet</servlet-name>
         <servlet-class>net.OSU.SmartEventPlanner.AddEventServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateEventServlet</servlet-name>
+        <servlet-class>net.OSU.SmartEventPlanner.UpdateEventServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEventServlet</servlet-name>
+        <servlet-class>net.OSU.SmartEventPlanner.DeleteEventServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -45,6 +53,14 @@
     <servlet-mapping>
         <servlet-name>AddEventServlet</servlet-name>
         <url-pattern>/AddEventServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEventServlet</servlet-name>
+        <url-pattern>/UpdateEventServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEventServlet</servlet-name>
+        <url-pattern>/DeleteEventServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
